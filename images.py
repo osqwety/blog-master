@@ -4,7 +4,7 @@ import shutil
 
 # Define paths
 md_directory = r"C:\Users\lambo\Documents\Obsidian_Vault\posts"  # Directory containing all .md files
-new_image_dir = r"C:\Users\lambo\OneDrive\Memes\temp"  # New location for images
+new_image_dir = r"C:\Users\lambo\Documents\blog-master\static\images"  # New location for images
 
 # Ensure new image directory exists
 os.makedirs(new_image_dir, exist_ok=True)
@@ -32,7 +32,7 @@ for file in os.listdir(md_directory):
                 if os.path.exists(abs_image_path):
                     # Move the image to the new directory
                     new_image_path = os.path.join(new_image_dir, os.path.basename(image_path))
-                    shutil.move(abs_image_path, new_image_path)
+                    shutil.copy(abs_image_path, new_image_path)
 
                     # Update Markdown link to point to the new location
                     new_md_path = f"![[{os.path.basename(new_image_path)}]]"
