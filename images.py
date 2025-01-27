@@ -3,17 +3,17 @@ import re
 import shutil
 
 # Define paths
-md_directory = r"C:\Users\lambo\Documents\Obsidian_Vault\posts"  # Directory containing all .md files
-obsidian_image_dir = r"C:\Users\lambo\Documents\Obsidian_Vault\images"  # Location of images inside the Obsidian vault
-new_image_dir = r"C:\Users\lambo\Documents\blog-master\static\images"  # Destination for images
+md_directory = r"C:\Users\lambo\Documents\Obsidian_Vault\posts"  # Directory with .md files
+obsidian_image_dir = r"C:\Users\lambo\Documents\Obsidian_Vault\images"  # Source images folder
+new_image_dir = r"C:\Users\lambo\Documents\blog-master\static\images"  # Hugo's image location
 
 # Ensure the new image directory exists
 os.makedirs(new_image_dir, exist_ok=True)
 
-# Regex pattern to match ![[/images/example.png]]
+# Regex to match ![[/images/image.png]]
 image_pattern = re.compile(r'!\[\[\s*(/images/[^]]+\.(?:png|jpg|jpeg|gif|bmp|webp|tiff|svg))\s*\]\]')
 
-# Process each Markdown file in the directory
+# Process each Markdown file
 for file in os.listdir(md_directory):
     if file.endswith(".md"):
         md_file_path = os.path.join(md_directory, file)
@@ -28,18 +28,18 @@ for file in os.listdir(md_directory):
             updated_content = content
 
             for image_path in matches:
-                # Convert `/images/...` to the actual path
-                relative_image_path = image_path.lstrip("/")  # Remove leading `/`
+                # Convert /images/... to a real path
+                relative_image_path = image_path.lstrip("/")  # Remove leading "/"
                 abs_image_path = os.path.join(obsidian_image_dir, os.path.basename(relative_image_path))
 
                 if os.path.exists(abs_image_path):
-                    # Move (or copy) the image to the new directory
+                    # Copy the image to Hugo's directory
                     new_image_path = os.path.join(new_image_dir, os.path.basename(abs_image_path))
-                    shutil.copy2(abs_image_path, new_image_path)  # Use copy instead of move
+                    shutil.copy2(abs_image_path, new_image_path)  # Copy instead of move
 
-                    # Update Markdown link to point to the new location
-                    new_md_path = f"![[{os.path.basename(new_image_path)}]]"
-                    updated_content = updated_content.replace(f"![[{image_path}]]", new_md_path)
+                    # Convert to Hugo format: ![[/images/image.png]] → ![image](/images/image.png)
+                    hugo_image_syntax = f"![{os.path.basename(new_image_path)}](/images/{os.path.basename(new_image_path)})"
+                    updated_content = updated_content.replace(f"![[{image_path}]]", hugo_image_syntax)
                     print(f"Copied: {abs_image_path} → {new_image_path}")
 
             # Write updated content back to the Markdown file
@@ -47,4 +47,4 @@ for file in os.listdir(md_directory):
                 md_file.write(updated_content)
             print(f"Updated Markdown: {md_file_path}")
 
-print("✅ Process completed.")
+print("✅ Process completed. Hugo-compatible Markdown is ready.")
