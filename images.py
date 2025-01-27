@@ -10,7 +10,7 @@ new_image_dir = r"C:\Users\lambo\Documents\blog-master\static\images"  # New loc
 os.makedirs(new_image_dir, exist_ok=True)
 
 # Regex pattern to match ![[../images/example.png]]
-image_pattern = re.compile(r'!\[\[\s*(\.\./[^]]+\.(?:png|jpg|jpeg|gif|bmp|webp|tiff|svg))\s*\]\]')
+image_pattern = re.compile(r'!\[\[\s*(/[^]]+\.(?:png|jpg|jpeg|gif|bmp|webp|tiff|svg))\s*\]\]')
 
 # Process each Markdown file in the directory
 for file in os.listdir(md_directory):
