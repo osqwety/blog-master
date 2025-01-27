@@ -5,7 +5,7 @@ $sourcePath = "C:\Users\lambo\Documents\Obsidian_Vault\posts"
 $destinationPath = "C:\Users\lambo\Documents\blog\content\posts"
 
 # Set Github repo 
-$myrepo = "https://github.com/osqwety/blog-master.git"
+$myrepo = "https://github.com/osqwety/blog-master"
 
 # Set error handling
 $ErrorActionPreference = "Stop"
