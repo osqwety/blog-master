@@ -5,4 +5,4 @@ AI is a very interesting field. I think it is cool, but a lot of people think it
 Test
 - This is a test
 - I do believe is very good but I don't care
-![Pasted%20image%2020250125210536.png](/images/Pasted%20image%2020250125210536.png)]
+![[/images/Pasted image 20250125211526.png]]
