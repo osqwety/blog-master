@@ -5,7 +5,7 @@ $sourcePath = "C:\Users\lambo\Documents\Obsidian_Vault\posts"
 $destinationPath = "C:\Users\lambo\Documents\blog\content\posts"
 
 # Set Github repo 
-$myrepo = "https://github.com/osqwety/blog-master"
+$myrepo = "https://github.com/osqwety/blog-master.git"
 
 # Set error handling
 $ErrorActionPreference = "Stop"
@@ -118,7 +118,7 @@ if (-not $hasStagedChanges) {
 # Step 7: Push all changes to the main branch
 Write-Host "Deploying to GitHub Master..."
 try {
-    git push origin main
+    git push origin1 main
 } catch {
     Write-Error "Failed to push to Master branch."
     exit 1
