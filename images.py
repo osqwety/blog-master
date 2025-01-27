@@ -2,45 +2,46 @@ import os
 import re
 import shutil
 
-# Paths (using raw strings to handle Windows backslashes correctly)
-posts_dir = r"C:\Users\lambo\Documents\Obsidian_Vault\posts"
-attachments_dir = r"C:\Users\lambo\Documents\Obsidian_Vault\images"
-static_images_dir = r"C:\Users\lambo\Documents\blog\static\images"
+# Define paths
+md_directory = r"C:\Users\lambo\Documents\Obsidian_Vault\posts"  # Directory containing all .md files
+new_image_dir = r"C:\Users\lambo\OneDrive\Memes\temp"  # New location for images
 
-# Step 1: Process each markdown file in the posts directory
-for filename in os.listdir(posts_dir):
-    if filename.endswith(".md"):
-        filepath = os.path.join(posts_dir, filename)
-        
-        with open(filepath, "r", encoding="utf-8") as file:
-            content = file.read()
-            print(content)
-        
-        # Step 2: Find all image links in the format ![Image Description](/images/Pasted%20image%20...%20.png)
-        images = re.findall(r'\[\[([^]]+\.(?:png|jpg|jpeg|gif|bmp|webp|tiff|svg))\]\]', content)
-        print(images)
-        
-        # Step 3: Replace image links and ensure URLs are correctly formatted
-        for image in images:
-            # Prepare the Markdown-compatible link with %20 replacing spaces
-            markdown_image = f"![Image Description]({image.replace(' ', '%20')})"
-            print(markdown_image)
-            content = content.replace(f"[[{image}]]", markdown_image)
-            
-            # Step 4: Copy the image to the Hugo static/images directory if it exists
-            
-            image_source = os.path.join(r"C:/Users/lambo/Documents/Obsidian_Vault", image)
-            image_source = image_source.replace(' ', '%20')
-            image_source = image_source.replace("..", "")
-            print(image_source)
-            if image_source == "":
-                print("blank")
-            print(f"yes: {image_source}")
-            if os.path.exists(image_source):
-                shutil.copy(image_source, static_images_dir)
+# Ensure new image directory exists
+os.makedirs(new_image_dir, exist_ok=True)
 
-        # Step 5: Write the updated content back to the markdown file
-        with open(filepath, "w", encoding="utf-8") as file:
-            file.write(content)
+# Regex pattern to match ![[../images/example.png]]
+image_pattern = re.compile(r'!\[\[\s*(\.\./[^]]+\.(?:png|jpg|jpeg|gif|bmp|webp|tiff|svg))\s*\]\]')
 
-print("Markdown files processed and images copied successfully.")
+# Process each Markdown file in the directory
+for file in os.listdir(md_directory):
+    if file.endswith(".md"):
+        md_file_path = os.path.join(md_directory, file)
+
+        with open(md_file_path, "r", encoding="utf-8") as md_file:
+            content = md_file.read()
+
+        # Find all image references
+        matches = image_pattern.findall(content)
+
+        if matches:
+            updated_content = content
+
+            for image_path in matches:
+                abs_image_path = os.path.abspath(os.path.join(md_directory, image_path))
+
+                if os.path.exists(abs_image_path):
+                    # Move the image to the new directory
+                    new_image_path = os.path.join(new_image_dir, os.path.basename(image_path))
+                    shutil.move(abs_image_path, new_image_path)
+
+                    # Update Markdown link to point to the new location
+                    new_md_path = f"![[{os.path.basename(new_image_path)}]]"
+                    updated_content = updated_content.replace(f"![[{image_path}]]", new_md_path)
+                    print(f"Moved: {abs_image_path} → {new_image_path}")
+
+            # Write updated content back to the Markdown file
+            #with open(md_file_path, "w", encoding="utf-8") as md_file:
+            #    md_file.write(updated_content)
+            #print(f"Updated Markdown: {md_file_path}")
+
+print("✅ Process completed.")

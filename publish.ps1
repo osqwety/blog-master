@@ -5,14 +5,14 @@ $sourcePath = "C:\Users\lambo\Documents\Obsidian_Vault\posts"
 $destinationPath = "C:\Users\lambo\Documents\blog\content\posts"
 
 # Set Github repo 
-$myrepo = "https://github.com/osqwety/blog"
+$myrepo = "https://github.com/osqwety/blog-master.git"
 
 # Set error handling
 $ErrorActionPreference = "Stop"
 Set-StrictMode -Version Latest
 
 # Change to the script's directory
-$ScriptDir = "C:\Users\lambo\Documents\Obsidian_Vault\"
+$ScriptDir = "C:\Users\lambo\Documents\blog-master\"
 Set-Location $ScriptDir
 
 # Check for required commands
