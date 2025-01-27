@@ -6,6 +6,6 @@ With fancy formatting
 - and bullet points
 - hopefully it works
 - also look at this image
- ![Pasted%20image%2020250125165348.png](/images/Pasted%20image%2020250125165348.png)
+ ![[../images/Pasted image 20250125210536.png]]]
 - It is awesome right?
 - #correct
