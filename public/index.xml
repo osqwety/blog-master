@@ -17,8 +17,8 @@ With fancy formatting&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;and bullet points&lt;/li&gt;
 &lt;li&gt;hopefully it works&lt;/li&gt;
-&lt;li&gt;also look at this image&lt;/li&gt;
-&lt;li&gt;![[/images/Pasted image 20250125165348.png]]&lt;/li&gt;
+&lt;li&gt;also look at this image
+![[/images/Pasted image 20250125211526.png]]&lt;/li&gt;
 &lt;li&gt;It is awesome right?&lt;/li&gt;
 &lt;li&gt;#correct&lt;/li&gt;
 &lt;/ul&gt;</description>
@@ -27,8 +27,8 @@ With fancy formatting&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;and bullet points&lt;/li&gt;
 &lt;li&gt;hopefully it works&lt;/li&gt;
-&lt;li&gt;also look at this image&lt;/li&gt;
-&lt;li&gt;![[/images/Pasted image 20250125165348.png]]&lt;/li&gt;
+&lt;li&gt;also look at this image
+![[/images/Pasted image 20250125211526.png]]&lt;/li&gt;
 &lt;li&gt;It is awesome right?&lt;/li&gt;
 &lt;li&gt;#correct&lt;/li&gt;
 &lt;/ul&gt;
@@ -46,14 +46,14 @@ Test&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;This is a test&lt;/li&gt;
 &lt;li&gt;I do believe is very good but I don&amp;rsquo;t care
--![[/images/istockphoto-1452604857-612x612.png]]&lt;/li&gt;
+![[istockphoto-1452604857-612x612.png]]&lt;/li&gt;
 &lt;/ul&gt;</description>
       <content>&lt;p&gt;AI is a very interesting field. I think it is cool, but a lot of people think it will take your job away. Skill issue I think. It won&amp;rsquo;t happen.
 Test&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;This is a test&lt;/li&gt;
 &lt;li&gt;I do believe is very good but I don&amp;rsquo;t care
--![[/images/istockphoto-1452604857-612x612.png]]&lt;/li&gt;
+![[istockphoto-1452604857-612x612.png]]&lt;/li&gt;
 &lt;/ul&gt;
 </content>
     </item>
